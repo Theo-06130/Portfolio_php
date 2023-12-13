@@ -11,7 +11,6 @@ class Data_Process extends Database
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['operation'])) {
             switch ($_POST['operation']) {
                 case "Ajouter":
-                    echo "Ajouter";
                     $this->addProject($formData);
                     break;
                 case "Supprimer":
@@ -21,7 +20,7 @@ class Data_Process extends Database
                     echo "Modifier";
                     break;
                 case "Afficher":
-                    echo "Afficher";
+                    $this->Show_Project();
                     break;
                 default:
                     echo "";
@@ -43,5 +42,15 @@ class Data_Process extends Database
             $formData['date_end'],
             $formData['id_theme']
         ));
+    }
+
+    private function Show_Project(){
+        $req_show = $this->conn->prepare("SELECT * FROM projet");
+        $req_show -> setFetchMode(PDO::FETCH_ASSOC);
+        $req_show -> execute();
+        $tab= $req_show->fetchALL();
+        for ($i=0;$i<count($tab);$i++){
+            echo $tab[$i]['Id_Projet']." ".$tab[$i]["Nom"]." ".$tab[$i]["Description"]." ".$tab[$i]["Langage"]." ".$tab[$i]["Collaborateur"]." ".$tab[$i]["Date_Start"]." ".$tab[$i]["Date_End"]." ".$tab[$i]["Id_theme"]."<br />";
+        }
     }
 }
