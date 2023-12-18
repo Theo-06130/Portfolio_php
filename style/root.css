@@ -1,0 +1,16 @@
+:root {
+    --Fond: #EEEEEE;
+    --Txt-color: #00171F;
+    --main:#00A7E1;
+    --secondary: #003459;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    color: var(--Txt-color);
+}
+
+

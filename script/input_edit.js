@@ -1,4 +1,5 @@
-    const operationSelect = document.getElementById('operation');
+
+/*const operationSelect = document.getElementById('operation');
     const nomInput = document.getElementById('nom');
     const nomLabel = document.getElementById('nom-label');
     const descriptionInput = document.getElementById('description');
@@ -72,4 +73,4 @@
     function checkForm() {
     // Vous pouvez ajouter d'autres vérifications ici si nécessaire
     return true
-}
+}*/

@@ -1,9 +1,11 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once 'Database.php';
 
 class Data_Process extends Database
 {
+
     public function processFormData($formData)
     {
         $this->connect();

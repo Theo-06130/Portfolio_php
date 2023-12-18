@@ -1,0 +1,42 @@
+@import url(root.css);
+
+
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.name{
+    width: 35vw;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon_name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    background-color: var(--Txt-color);
+    margin: 5px;
+    border-radius: 100px;
+}
+.icon_name>p{
+    font-size:40px;
+    padding: 2px;
+    color: var(--Fond);
+}
+
+nav{
+    width: 25vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom:2px solid var(--main);
+}
+
+nav>img{
+    width: 30px;
+}
