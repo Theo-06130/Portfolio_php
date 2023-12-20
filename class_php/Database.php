@@ -1,21 +1,25 @@
 <?php
 require_once '../Config/config.php';
 
-class Database {
-
-    private $host = DB_HOST;
-    private $user = DB_USER;
-    private $password = DB_PASSWORD;
-    private $dbname = DB_NAME;
+class Database extends PDO {
+    private string $host = DB_HOST;
+    private string $user = DB_USER;
+    private string $password = DB_PASSWORD;
+    private string $dbname = DB_NAME;
     protected $conn;
 
     /**
      * @throws Exception
      */
-    public function connect() {
+    public function connect(): void
+    {
         try {
-            $this->conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn = new PDO(
+                "mysql:host={$this->host};dbname={$this->dbname}",
+                $this->user,
+                $this->password,
+                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+            );
         } catch (PDOException $e) {
             // Laissez le code appelant gérer l'erreur en lançant une exception
             throw new Exception("Erreur de connexion à la base de données : " . $e->getMessage());

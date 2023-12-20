@@ -6,6 +6,9 @@ require_once 'Database.php';
 class Data_Process extends Database
 {
 
+    /**
+     * @throws Exception
+     */
     public function processFormData($formData)
     {
         $this->connect();

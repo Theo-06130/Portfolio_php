@@ -1,18 +1,15 @@
 <?php
-// home.php
 require_once '../Config/config.php';
-require_once '../class_php/show_home.php';
 require_once '../class_php/Database.php';
 
-$database = new Database(); // Initialisez votre instance de Database
-$showHome = new Show_Home($database);
-
+$database = new Database();
 try {
-$database = new Database(); // Initialisez votre instance de Database
-$database->connect(); // Établissez la connexion à la base de données
+    $database->connect();
 
-$showHome = new Show_Home($database);
-
+    // Reste du code
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -25,7 +22,7 @@ $showHome = new Show_Home($database);
     <link rel="stylesheet" href="../style/Home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -38,15 +35,15 @@ $showHome = new Show_Home($database);
     </div>
     <nav>
         <img src="../assets/add.svg" alt="add_button">
-        <h3>Accueil</h3>
-        <h3>Blog</h3>
-        <h3>Contact</h3>
+        <a href="Home.php">Accueil</a>
+        <a href="#">Blog</a>
+        <a href="Contact.php">Contact</a>
     </nav>
 </header>
 <main>
     <?php
     // Afficher les projets récursivement
-    $showHome->displayProjects();
+    $showHome->displayProjects($themeColors);
     ?>
 </main>
 </body>

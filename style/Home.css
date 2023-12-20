@@ -1,18 +1,65 @@
 @import url(root.css);
 
 
-header{
-    display: flex;
-    justify-content: space-between;
+
+
+@media screen and (max-width: 900px) {
+   nav{
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       position: absolute;
+       bottom: 5px;
+       width: 100vw;
+       border-top: 2px solid var(--main);
+   }
+
+    .name{
+        justify-content: space-between;
+        display: flex;
+        height: 8vh;
+        width: 100vw;
+        align-items: center;
+    }
+    .name>h2{
+        display: block;
+    }
 }
 
-.name{
-    width: 35vw;
-    height: 8vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+@media screen and (min-width: 900px) {
+    header{
+        display: flex;
+        justify-content: space-between;
+        margin: 1vh 0 0 1vw;
+    }
+
+    nav{
+        width: 25vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom:2px solid var(--main);
+    }
+
+    .name{
+        width: 35vw;
+        height: 8vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .name>h2{
+        display: none;
+    }
 }
+
+a{
+    text-decoration: none;
+    font-size: 22px;
+}
+
+
 
 .icon_name{
     display: flex;
@@ -29,14 +76,41 @@ header{
     color: var(--Fond);
 }
 
-nav{
-    width: 25vw;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom:2px solid var(--main);
-}
+
 
 nav>img{
     width: 30px;
 }
+
+.home-container{
+    margin:3vh 0 0 2vw;
+}
+
+.date{
+    font-size: 22px;
+    font-weight: 300;
+}
+
+
+.projects-container{
+    display: flex;
+    overflow-x:scroll;
+
+}
+
+.project{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    width: clamp(110px,6vw,170px);
+    margin: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.project>p{
+    color: var(--Fond);
+}
+
+
