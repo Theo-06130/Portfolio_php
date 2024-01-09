@@ -19,7 +19,7 @@ class Data_Process extends Database
                     $this->addProject($formData);
                     break;
                 case "Supprimer":
-                    echo "Supprimer";
+                    $this->deleteProject();
                     break;
                 case "Modifier":
                     echo "Modifier";
@@ -49,6 +49,39 @@ class Data_Process extends Database
         ));
     }
 
+
+    private function deleteProject(): void
+    {
+        if (isset($_POST['Choix_id'])) {
+            $choixId = $_POST['Choix_id'];
+
+            // Effectuez une requête pour vérifier si l'ID existe dans la base de données
+            $query = "SELECT * FROM projet WHERE Id_Projet = :choixId";
+            $statement = $this->connection->prepare($query);
+            $statement->bindParam(':choixId', $choixId, PDO::PARAM_INT);
+            $statement->execute();
+
+            // Vérifiez si des résultats ont été obtenus
+            if ($statement->rowCount() > 0) {
+                // L'ID existe, vous pouvez maintenant exécuter la logique de suppression
+                $this->performDelete($choixId);
+            } else {
+                // L'ID n'existe pas dans la base de données
+                echo "La suppression a échoué, L'ID n'éxiste pas";
+            }
+        } else {
+            echo "L'ID n'a pas été spécifié.";
+        }
+    }
+
+    private function performDelete($choixId): void
+    {
+        // Logique de suppression ici (exécuter la requête DELETE)
+        $req_delete = $this->connection->prepare("DELETE FROM projet WHERE Id_Projet = ?");
+        $req_delete->execute([$choixId]);
+
+        echo "Projet supprimé avec succès.";
+    }
 
 
 
