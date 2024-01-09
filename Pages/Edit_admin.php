@@ -44,17 +44,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: #0A0A0A;
             color: #F1F1F1;
         }
+
     </style>
 
     <form action="Edit_admin.php" method="post">
         <label for="operation">Opération :</label>
-        <select id="operation" name="operation">
+        <select id="operation" name="operation" onchange="handleOperationChange()">
             <option value="Default">Choisir une option</option>
             <option value="Ajouter" id="add">Ajouter</option>
             <option value="Modifier" id="edit">Modifier</option>
             <option value="Supprimer" id="del">Supprimer</option>
             <option value="Afficher" id="show">Afficher</option>
         </select>
+        <br>
+
+        <label for="Choix_id" id="label_Choix_id">Choix de l'id à sélectionner</label>
+        <input type="number" min="0" name="Choix_id" id="Choix_id">
+
         <br>
 
         <label for="nom" id="nom-label">Nom :</label>
@@ -90,5 +96,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 </body>
-
+<script src="../script/input_edit.js"></script>
 </html>

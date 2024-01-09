@@ -9,7 +9,7 @@ class Data_Process extends Database
     /**
      * @throws Exception
      */
-    public function processFormData($formData)
+    public function processFormData($formData): void
     {
         $this->connect();
 
@@ -34,10 +34,10 @@ class Data_Process extends Database
         }
     }
 
-    private function addProject($formData)
+    private function addProject($formData): void
     {
         // Utilisez ces valeurs dans votre requête SQL
-        $req_add = $this->conn->prepare("INSERT INTO projet(Nom,Description,langage,Collaborateur,Date_start,Date_End,Id_Theme) VALUES (?,?,?,?,?,?,?)");
+        $req_add = $this->connection->prepare("INSERT INTO projet(Nom,Description,langage,Collaborateur,Date_start,Date_End,Id_Theme) VALUES (?,?,?,?,?,?,?)");
         $req_add->execute(array(
             $formData['nom'],
             $formData['description'],
@@ -49,8 +49,12 @@ class Data_Process extends Database
         ));
     }
 
-    private function Show_Project(){
-        $req_show = $this->conn->prepare("SELECT * FROM projet");
+
+
+
+    private function Show_Project(): void
+    {
+        $req_show = $this->connection->prepare("SELECT * FROM projet");
         $req_show -> setFetchMode(PDO::FETCH_ASSOC);
         $req_show -> execute();
         $tab= $req_show->fetchALL();
