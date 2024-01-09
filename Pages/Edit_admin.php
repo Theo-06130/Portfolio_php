@@ -4,13 +4,28 @@ require_once '../class_php/Database.php';
 require_once '../class_php/Take_data.php';
 require_once '../class_php/Data_Process.php';
 
+// Assurez-vous d'appeler le constructeur avec les paramètres appropriés
 $database = new Database();
+
+try {
+    $database->connect();
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
+    exit();
+}
+
 $Take_Data = new Take_data();
 $Data_Process = new Data_Process();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $formData = $Take_Data->getFormData();
-    $Data_Process->processFormData($formData);
+    try {
+        $Data_Process->processFormData($formData);
+    } catch (Exception $e) {
+        // Gérer l'exception, par exemple, afficher un message d'erreur
+        echo "Erreur : " . $e->getMessage();
+        // Vous pouvez prendre d'autres mesures en cas d'erreur de traitement des données
+    }
 }
 ?>
 
