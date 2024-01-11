@@ -1,76 +1,34 @@
+const Choix_id = document.getElementById("Choix_id")
+const label_Choix_id = document.getElementById("label_Choix_id")
 
-/*const operationSelect = document.getElementById('operation');
-    const nomInput = document.getElementById('nom');
-    const nomLabel = document.getElementById('nom-label');
-    const descriptionInput = document.getElementById('description');
-    const descriptionLabel = document.getElementById('description-label');
-    const langageInput = document.getElementById('langage');
-    const langageLabel = document.getElementById('langage-label');
-    const collaborateurInput = document.getElementById('collaborateur');
-    const collaborateurLabel = document.getElementById('collaborateur-label');
-    const dateStartInput = document.getElementById('date_start');
-    const dateStartLabel = document.getElementById('date_start-label');
-    const dateEndInput = document.getElementById('date_end');
-    const dateEndLabel = document.getElementById('date_end-label');
-    const idThemeInput = document.getElementById('id_theme');
-    const idThemeLabel = document.getElementById('id_theme-label');
 
-    function handleOptionChange() {
-    const operation = operationSelect.value;
 
-    // Réinitialisez tous les styles d'affichage
-    resetStyles();
+function handleOperationChange() {
+    let operationSelect = document.getElementById("operation");
+    let selectedOption = operationSelect.options[operationSelect.selectedIndex].value;
 
-    switch (operation) {
-    case 'Ajouter':
-    // Affichez les champs nécessaires pour Ajouter
-    showField(nomInput, nomLabel);
-    showField(descriptionInput, descriptionLabel);
-    showField(langageInput, langageLabel);
-    showField(collaborateurInput, collaborateurLabel);
-    showField(dateStartInput, dateStartLabel);
-    showField(dateEndInput, dateEndLabel);
-    showField(idThemeInput, idThemeLabel);
-    break;
-    case 'Modifier':
-    // Affichez les champs nécessaires pour Modifier
-    // ...
-    break;
-    case 'Supprimer':
-    // Affichez les champs nécessaires pour Supprimer
-    // ...
-    break;
-    case 'Afficher':
-    // Affichez les champs nécessaires pour Afficher
-    // ...
-    break;
-    default:
-    alert('Veuillez choisir une option');
-    break;
-}
+    // Exemple : Si "Supprimer" est sélectionné, effectuez une action spécifique
+    if (selectedOption === "Supprimer" || selectedOption==="Modifier") {
+        label_Choix_id.style.display="inline"
+        Choix_id.style.display="inline"
+        // Ajoutez ici votre logique spécifique pour l'option "Supprimer"
+    }
+    else{
+        Choix_id.style.display="none"
+        label_Choix_id.style.display="none"
+    }
 }
 
-    function resetStyles() {
-    hideField(nomInput, nomLabel);
-    hideField(descriptionInput, descriptionLabel);
-    hideField(langageInput, langageLabel);
-    hideField(collaborateurInput, collaborateurLabel);
-    hideField(dateStartInput, dateStartLabel);
-    hideField(dateEndInput, dateEndLabel);
-    hideField(idThemeInput, idThemeLabel);
-}
+// Ajoutez ici votre logique de validation du formulaire
+function validateForm() {
+    // Exemple : Vérifiez les champs de formulaire avant de soumettre
+    let nom = document.getElementById("nom").value;
+    if (nom === "") {
+        alert("Le champ 'Nom' ne peut pas être vide");
+        return false; // Empêche la soumission du formulaire
+    }
 
-    function showField(input, label) {
-    input.style.display = 'inline';
-    label.style.display = 'inline';
-}
+    // Ajoutez d'autres validations selon vos besoins
 
-    function hideField(input, label) {
-    input.style.display = 'none';
-    label.style.display = 'none';
+    return true; // Autorise la soumission du formulaire
 }
-
-    function checkForm() {
-    // Vous pouvez ajouter d'autres vérifications ici si nécessaire
-    return true
-}*/

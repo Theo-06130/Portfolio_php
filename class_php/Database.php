@@ -1,6 +1,6 @@
 <?php
 class Database {
-    private $connection;
+    protected $connection;
     private string $host = DB_HOST;
     private string $user = DB_USER;
     private string $password = DB_PASSWORD;
