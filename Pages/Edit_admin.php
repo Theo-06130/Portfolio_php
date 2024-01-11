@@ -4,7 +4,6 @@ require_once '../class_php/Database.php';
 require_once '../class_php/Take_data.php';
 require_once '../class_php/Data_Process.php';
 
-// Assurez-vous d'appeler le constructeur avec les paramètres appropriés
 $database = new Database();
 
 try {
@@ -90,8 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="id_theme" id="id_theme-label">ID du thème :</label>
         <input type="text" id="id_theme" name="id_theme">
         <br>
+        <button type="submit" name="envoyer">Envoyez</button>
 
-        <input type="submit" value="Envoyer">
     </form>
 
 

@@ -41,16 +41,6 @@ try {
     </nav>
 </header>
 <main>
-    <?php
-    // Afficher les projets récursivement
-    $showHome->displayProjects($themeColors);
-    ?>
 </main>
 </body>
 </html>
-    <?php
-} catch (Exception $e) {
-    // Gérer l'exception, par exemple, afficher un message d'erreur
-    echo "Erreur : " . $e->getMessage();
-}
-?>
