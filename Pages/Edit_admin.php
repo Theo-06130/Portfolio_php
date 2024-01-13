@@ -4,6 +4,17 @@ require_once '../class_php/Database.php';
 require_once '../class_php/Take_data.php';
 require_once '../class_php/Data_Process.php';
 
+// Vérifier la session ici
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// Si l'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
+
 $database = new Database();
 
 try {
@@ -92,6 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" name="envoyer">Envoyez</button>
 
     </form>
+
+
+    <a href="logout.php">Se déconnecter</a>
 
 
 </body>

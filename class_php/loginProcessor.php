@@ -20,6 +20,7 @@ class LoginProcessor
         // Valider l'authentification
         if ($this->authenticate($username, $password)) {
             // Authentification réussie, rediriger vers Edit_admin.php
+            $_SESSION['logged_in'] = true;
             header("Location: Edit_admin.php");
             exit();
         } else {
