@@ -78,17 +78,25 @@ class Data_Process extends Database
 
         // Si l'ID existe, effectuer la mise à jour
         if ($query->rowCount() > 0) {
-            $req_update = $this->connection->prepare("UPDATE projet SET Nom=?, Description=?, Langage=?, Collaborateur=?, Date_start=?, Date_End=?, Id_Theme=? WHERE Id_Projet=?");
-            $req_update->execute([
-                $formData['nom'],
-                $formData['description'],
-                $formData['langage'],
-                $formData['collaborateur'],
-                $formData['date_start'],
-                $formData['date_end'],
-                $formData['id_theme'],
-                $choixId
-            ]);
+            $updateFields = [];
+            $updateValues = [];
+
+            // Construire dynamiquement les parties SET de la requête SQL
+            foreach ($formData as $key => $value) {
+                if (!empty($value) || $value === '0') {
+                    // Ajouter le champ à la liste des champs à mettre à jour
+                    $updateFields[] = "$key=?";
+                    // Ajouter la valeur à la liste des valeurs à mettre à jour
+                    $updateValues[] = $value;
+                }
+            }
+
+            // Construire la requête SQL avec les parties SET dynamiquement générées
+            $updateFieldsString = implode(', ', $updateFields);
+            $req_update = $this->connection->prepare("UPDATE projet SET $updateFieldsString WHERE Id_Projet=?");
+            $updateValues[] = $choixId; // Ajouter l'ID à la fin des valeurs
+
+            $req_update->execute($updateValues);
 
             echo "Projet mis à jour avec succès.";
         } else {
