@@ -29,21 +29,11 @@ class Database {
     }
 
     /**
-     * @throws Exception
+     * @param string $query
+     * @return PDOStatement
      */
-    public function getAllProjects()
+    public function prepare(string $query): PDOStatement
     {
-        try {
-            $query = "SELECT * FROM projet";
-            $result = $this->connection->query($query);
-
-            if ($result) {
-                return $result->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return array();
-            }
-        } catch (PDOException $e) {
-            throw new Exception("Erreur de requête SQL : " . $e->getMessage());
-        }
+        return $this->connection->prepare($query);
     }
 }
