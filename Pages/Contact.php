@@ -1,23 +1,25 @@
 <?php
 // Contact.php
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once '../Config/config.php';
-require_once '../class_php/Contact_traitement.php'; // Assurez-vous que le fichier est correctement inclus
+require_once '../class_php/Contact_traitement.php';
 require_once '../class_php/Database.php';
 
-$database = new Database(); // Initialisez votre instance de Database
+$database = new Database();
 
 try {
-    $database->connect(); // Établissez la connexion à la base de données
+    $database->connect();
 
     $contactFormHandler = new ContactFormHandler($database);
-    $confirmationMessage = $contactFormHandler->saveFormToDatabase();
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $confirmationMessage = $contactFormHandler->saveFormToDatabase();
+        echo $confirmationMessage;
+    }
 
-
-    // Reste du code pour le formulaire de contact
 } catch (Exception $e) {
-    // Gérer l'exception, par exemple, afficher un message d'erreur
     echo "Erreur : " . $e->getMessage();
 }
 ?>
@@ -49,8 +51,9 @@ try {
 
         <label for="message">Message* :</label>
         <textarea id="message" name="message" required></textarea>
-        <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
-        <button type="submit">Envoyer</button>
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+        <input type="submit" value="Envoyer">
+
     </form>
 </body>
 </html>

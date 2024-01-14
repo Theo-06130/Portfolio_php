@@ -2,13 +2,12 @@
 
 class LoginProcessor
 {
-    private Database $db; // Déclarez la propriété si nécessaire
+    private Database $db;
 
-    public function __construct(Database $db) // Assurez-vous d'ajouter le type d'objet approprié
+    public function __construct(Database $db)
     {
         $this->db = $db;
     }
-
 
     public function processLogin($username, $password, $csrfToken): void
     {
@@ -17,11 +16,13 @@ class LoginProcessor
             die("Erreur CSRF. Veuillez réessayer.");
         }
 
-        // Valider l'authentification
+        // Valider l'authentification avec le mot de passe haché
         if ($this->authenticate($username, $password)) {
-            // Authentification réussie, rediriger vers Edit_admin.php
+            $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
-            header("Location: Edit_admin.php");
+
+            // Authentification réussie, rediriger vers Edit_admin.php
+            header("Location: ../Pages/Edit_admin.php");
             exit();
         } else {
             // Authentification échouée, afficher un message d'erreur
@@ -31,19 +32,15 @@ class LoginProcessor
 
     private function authenticate($username, $password): bool
     {
-        // Vous devez mettre en œuvre votre propre logique d'authentification ici
-        // Assurez-vous d'utiliser des méthodes de hachage appropriées pour stocker et comparer les mots de passe.
-
-        // Exemple basique sans hachage (ne pas utiliser en production)
         $query = $this->db->prepare("SELECT * FROM admin WHERE Name = ?");
         $query->execute([$username]);
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && $user['Pswd'] === $password) {
+        if ($user && password_verify($password, $user['Pswd'])) {
             return true;
         }
 
         return false;
     }
+
 }
-?>

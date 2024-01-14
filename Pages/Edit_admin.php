@@ -1,19 +1,20 @@
 <?php
+
+
 require_once '../Config/config.php';
 require_once '../class_php/Database.php';
 require_once '../class_php/Take_data.php';
 require_once '../class_php/Data_Process.php';
-
-// Vérifier la session ici
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// Si l'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+
+
+// Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
+if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: login.php");
     exit();
 }
-
 
 $database = new Database();
 

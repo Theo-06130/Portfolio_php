@@ -7,6 +7,9 @@ class Database {
     private string $dbname = DB_NAME;
 //    protected $conn;
 
+    /**
+     * @throws Exception
+     */
     public function __construct()
     {
         $this->connect();
