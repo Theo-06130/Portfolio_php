@@ -6,13 +6,13 @@ class Take_data extends Database
     {
         // Récupérez les valeurs des champs du formulaire
         return array(
-            'nom' => $_POST['nom'] ?? '',
-            'description' => $_POST['description'] ?? '',
-            'langage' => $_POST['langage'] ?? '',
-            'collaborateur' => $_POST['collaborateur'] ?? '',
-            'date_start' => $_POST['date_start'] ?? '',
-            'date_end' => $_POST['date_end'] ?? '',
-            'id_theme' => $_POST['id_theme'] ?? ''
+            'nom' => htmlspecialchars($_POST['nom'] ?? ''),
+            'description' => htmlspecialchars($_POST['description'] ?? ''),
+            'langage' => htmlspecialchars($_POST['langage'] ?? ''),
+            'collaborateur' => htmlspecialchars($_POST['collaborateur'] ?? ''),
+            'date_start' => htmlspecialchars($_POST['date_start'] ?? ''),
+            'date_end' => htmlspecialchars($_POST['date_end'] ?? ''),
+            'id_theme' => htmlspecialchars($_POST['id_theme'] ?? '')
         );
     }
 }
