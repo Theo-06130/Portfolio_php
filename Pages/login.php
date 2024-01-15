@@ -15,24 +15,29 @@ require_once '../class_php/Database.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../style/login.css" rel="stylesheet" />
     <title>Login</title>
 </head>
 <body>
+<img class="return" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
+<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <div class="container">
+        <div class="card">
+            <a class="login">Log in</a>
+            <div class="inputBox">
+                <input type="text" id="username" name="username" required>
+                <span class="user">Username</span>
+            </div>
 
-<h2>Login</h2>
+            <div class="inputBox">
+                <input type="password" id="password" name="password" required>
+                <span>Password</span>
+            </div>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <!-- Ajoutez ici vos champs de formulaire pour le nom d'utilisateur et le mot de passe -->
-    <label for="username">Nom d'utilisateur:</label>
-    <input type="text" id="username" name="username" required>
-
-    <label for="password">Mot de passe:</label>
-    <input type="password" id="password" name="password" required>
-
-    <!-- Ajoutez un champ pour le jeton CSRF -->
-    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-
-    <input type="submit" value="Connexion">
+        </div>
+        <input type="submit" value="Connexion" class="enter">
+    </div>
 </form>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

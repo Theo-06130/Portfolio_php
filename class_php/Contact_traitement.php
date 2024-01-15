@@ -28,12 +28,12 @@ class ContactFormHandler extends Database
             }
 
             // Récupérer les données du formulaire
-            $subject = $_POST["subject"];
-            $firstName = $_POST["first_name"];
-            $lastName = $_POST["last_name"];
-            $email = $_POST["email"];
-            $phone = $_POST["phone"];
-            $message = $_POST["message"];
+            $subject = htmlspecialchars($_POST["subject"]);
+            $firstName = htmlspecialchars($_POST["first_name"]);
+            $lastName = htmlspecialchars($_POST["last_name"]);
+            $email = htmlspecialchars($_POST["email"]);
+            $phone = htmlspecialchars($_POST["phone"]);
+            $message = htmlspecialchars($_POST["message"]);
 
             // Validation des données (ajoutez votre propre logique de validation)
 
