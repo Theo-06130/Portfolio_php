@@ -143,13 +143,22 @@ class Data_Process extends Database
     public function Show_Project(): void
     {
         $req_show = $this->connection->prepare("SELECT * FROM projet");
-        $req_show -> setFetchMode(PDO::FETCH_ASSOC);
-        $req_show -> execute();
-        $tab= $req_show->fetchALL();
-        for ($i=0;$i<count($tab);$i++){
-            echo $tab[$i]['Id_Projet']." ".$tab[$i]["Nom"]." ".$tab[$i]["Description"]." ".$tab[$i]["Langage"]." ".$tab[$i]["Collaborateur"]." ".$tab[$i]["Date_Start"]." ".$tab[$i]["Date_End"]." ".$tab[$i]["Id_theme"]."<br />";
+        $req_show->setFetchMode(PDO::FETCH_ASSOC);
+        $req_show->execute();
+        $tab = $req_show->fetchAll();
+
+        for ($i = 0; $i < count($tab); $i++) {
+            echo htmlspecialchars($tab[$i]['Id_Projet'], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Nom"], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Description"], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Langage"], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Collaborateur"], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Date_Start"], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Date_End"], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Id_theme"], ENT_QUOTES, 'UTF-8') . "<br />";
         }
     }
+
 
 
 
