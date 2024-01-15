@@ -15,7 +15,7 @@ require_once '../class_php/Database.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../style/login.css" rel="stylesheet" />
+    <link href="../style/login&Contact.css" rel="stylesheet" />
     <title>Login</title>
 </head>
 <body>
