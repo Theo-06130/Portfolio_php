@@ -36,7 +36,7 @@ try {
     <nav>
         <img src="../assets/add.svg" alt="add_button" onclick="location.href = 'Edit_admin.php';">
         <a href="Home.php">Accueil</a>
-        <a href="#">Blog</a>
+        <a href="blog.php">Blog</a>
         <a href="Contact.php">Contact</a>
     </nav>
 </header>

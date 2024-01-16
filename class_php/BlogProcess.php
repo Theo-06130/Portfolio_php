@@ -11,7 +11,7 @@ class BlogProcess
 
     public function getAllBlogs(): array
     {
-        $query = $this->database->prepare("SELECT * FROM blog");
+        $query = $this->database->prepare("SELECT * FROM blog ORDER BY DATE DESC");
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         return $query->fetchAll();
