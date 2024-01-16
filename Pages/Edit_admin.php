@@ -46,67 +46,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire</title>
+    <link rel="stylesheet" href="../style/Edit_admin.css">
+    <link rel="stylesheet" href="../style/login&Contact.css">
+    <title>Edit_admin</title>
 </head>
 
 <body>
-    <style>
-        * {
-            background-color: #0A0A0A;
-            color: #F1F1F1;
-        }
 
-    </style>
 
+<div class="input_div">
+    <img class="return_Edit_admin" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
     <form action="Edit_admin.php" method="post">
-        <label for="operation">Opération :</label>
-        <select id="operation" name="operation" onchange="handleOperationChange()">
-            <option value="Default">Choisir une option</option>
-            <option value="Ajouter" id="add">Ajouter</option>
-            <option value="Modifier" id="edit">Modifier</option>
-            <option value="Supprimer" id="del">Supprimer</option>
-            <option value="Afficher" id="show">Afficher</option>
-        </select>
-        <br>
+        <div class="container_Edit_admin">
+            <div class="card">
+                <label for="operation">Changement admin :</label>
+                <select id="operation" name="operation" onchange="handleOperationChange()">
+                    <option value="Default">Choisir une option</option>
+                    <option value="Ajouter" id="add">Ajouter</option>
+                    <option value="Modifier" id="edit">Modifier</option>
+                    <option value="Supprimer" id="del">Supprimer</option>
+                    <option value="Afficher" id="show">Afficher</option>
+                </select>
+                <div class="inputBox" id="Choix_id">
+                    <input type="number" min="0" name="Choix_id">
+                    <span class="user">Choix ID</span>
+                </div>
+                <div class="inputBox">
+                    <input type="text" id="nom" name="nom">
+                    <span class="user">Nom</span>
+                </div>
 
-        <label for="Choix_id" id="label_Choix_id">Choix de l'id à sélectionner</label>
-        <input type="number" min="0" name="Choix_id" id="Choix_id">
+                <div class="inputBox">
+                    <input type="text" id="description" name="description">
+                    <span class="user">Description</span>
+                </div>
 
-        <br>
+                <div class="inputBox">
+                    <input type="text" id="langage" name="langage">
+                    <span class="user">langage</span>
+                </div>
 
-        <label for="nom" id="nom-label">Nom :</label>
-        <input type="text" id="nom" name="nom">
-        <br>
+                <div class="inputBox">
+                    <input type="text" id="collaborateur" name="collaborateur">
+                    <span class="user">Collaborateurs</span>
+                </div>
+                <div class="inputBox">
+                    <input type="date" id="date_start" name="date_start" value="2023-12-11">
+                    <span class="user">Date début</span>
+                </div>
 
-        <label for="description" id="description-label">Description :</label>
-        <input type="text" id="description" name="description">
-        <br>
+                <div class="inputBox">
+                <input type="date" id="date_end" name="date_end" value="2023-12-11">
+                    <span class="user">Date fin</span>
+                </div>
 
-        <label for="langage" id="langage-label">Langage :</label>
-        <input type="text" id="langage" name="langage">
-        <br>
-
-        <label for="collaborateur" id="collaborateur-label">Collaborateur :</label>
-        <input type="text" id="collaborateur" name="collaborateur">
-        <br>
-
-        <label for="date_start" id="date_start-label">Date de début :</label>
-        <input type="date" id="date_start" name="date_start" value="2023-12-11">
-        <br>
-
-        <label for="date_end" id="date_end-label">Date de fin :</label>
-        <input type="date" id="date_end" name="date_end" value="2023-12-11">
-        <br>
-
-        <label for="id_theme" id="id_theme-label">ID du thème :</label>
-        <input type="text" id="id_theme" name="id_theme">
-        <br>
-        <button type="submit" name="envoyer">Envoyez</button>
-
+                <div class="inputBox">
+                <input type="text" id="id_theme" name="id_theme">
+                    <span class="user">Id theme</span>
+                </div>
+                <input type="submit" name="envoyer" class="enter">
     </form>
-
-
     <a href="logout.php">Se déconnecter</a>
+</div>
+
 
 
 </body>

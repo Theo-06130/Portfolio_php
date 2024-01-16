@@ -148,7 +148,7 @@ class Data_Process extends Database
         $tab = $req_show->fetchAll();
 
         for ($i = 0; $i < count($tab); $i++) {
-            echo htmlspecialchars($tab[$i]['Id_Projet'], ENT_QUOTES, 'UTF-8') . " "
+            echo  htmlspecialchars($tab[$i]['Id_Projet'], ENT_QUOTES, 'UTF-8') . " "
                 . htmlspecialchars($tab[$i]["Nom"], ENT_QUOTES, 'UTF-8') . " "
                 . htmlspecialchars($tab[$i]["Description"], ENT_QUOTES, 'UTF-8') . " "
                 . htmlspecialchars($tab[$i]["Langage"], ENT_QUOTES, 'UTF-8') . " "
