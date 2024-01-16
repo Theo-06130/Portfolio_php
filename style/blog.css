@@ -1,0 +1,65 @@
+@import "root.css";
+
+
+.return{
+    width: 33px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+body{
+    background-color: var(--Fond);
+    color: var(--Txt-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+h1{
+    margin: 15px;
+}
+
+.blog_group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+}
+
+.blog{
+    min-width: 350px;
+    width: 30vw;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--main);
+}
+
+.Titre{
+    padding: 5px;
+    text-align: center;
+    height: 15%;
+    width: 100%;
+}
+
+.Contenu{
+    padding: 5px;
+    overflow-y: scroll;
+    height: 70%;
+    width: 100%;
+}
+
+
+.Date{
+    text-align: center;
+    padding: 5px;
+    height: 15%;
+    width: 100%;
+}

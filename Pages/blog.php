@@ -27,21 +27,31 @@ $blogs = $blogProcess->getAllBlogs();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/blog.css">
     <title>Blog</title>
 </head>
 
 <body>
+<img class="return" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
 <h1>Liste des blogs</h1>
-
-<?php
-foreach ($blogs as $blog) {
-    // Afficher les détails du blog (assurez-vous d'échapper les données pour éviter les failles XSS)
-    echo "Titre: " . htmlspecialchars($blog['Titre']) . "<br>";
-    echo "Contenu: " . htmlspecialchars($blog['Contenu']) . "<br>";
-    echo "Date: " . htmlspecialchars($blog['Date']) . "<br>";
-    echo "<hr>";
-}
-?>
+<div class="blog_group">
+    <?php
+    foreach ($blogs as $blog) {
+        echo "<div class='blog'>";
+        echo "<p class='Titre'>";
+        // Afficher les détails du blog (assurez-vous d'échapper les données pour éviter les failles XSS)
+        echo htmlspecialchars($blog['Titre']) . "<br>";
+        echo "</p>";
+        echo "<p class='Contenu'>";
+        echo htmlspecialchars($blog['Contenu']) . "<br>";
+        echo "</p>";
+        echo "<p class='Date'>";
+        echo htmlspecialchars($blog['Date']) . "<br>";
+        echo "</p>";
+        echo "</div>";
+        echo "<hr>";
+    }
+    ?></>
 
 </body>
 
