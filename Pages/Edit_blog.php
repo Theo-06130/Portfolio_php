@@ -3,8 +3,8 @@
 
 require_once '../Config/config.php';
 require_once '../class_php/Database.php';
-require_once '../class_php/Take_data.php';
-require_once '../class_php/Data_Process.php';
+require_once '../class_php/Take_data_blog.php';
+require_once '../class_php/EditBlogProcess.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -12,6 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
 if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    $page='Edit_blog.php';
     header("Location: login.php");
     exit();
 }
@@ -25,13 +26,13 @@ try {
     exit();
 }
 
-$Take_Data = new Take_data();
-$Data_Process = new Data_Process();
+$Take_Data_Blog = new Take_data_blog();
+$EditBlogProcess = new EditBlogProcess();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $formData = $Take_Data->getFormData();
+    $formData = $Take_Data_Blog->getFormDataBlog();
     try {
-        $Data_Process->processFormData($formData);
+        $EditBlogProcess->processFormDataBlog($formData);
     } catch (Exception $e) {
         // Gérer l'exception, par exemple, afficher un message d'erreur
         echo "Erreur : " . $e->getMessage();
@@ -48,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/Edit_admin.css">
     <link rel="stylesheet" href="../style/login&Contact.css">
-    <title>Edit_admin</title>
+    <title>Edit_Blog</title>
 </head>
 
 <body>
@@ -56,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="input_div">
     <img class="return_Edit_admin" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
-    <form action="Edit_admin.php" method="post">
+    <form action="Edit_blog.php" method="post">
         <div class="container_Edit_admin">
             <div class="card">
                 <label for="operation">Changement admin :</label>
@@ -72,36 +73,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span class="user">Choix ID</span>
                 </div>
                 <div class="inputBox">
-                    <input type="text" id="nom" name="nom">
-                    <span class="user">Nom</span>
+                    <input type="text" id="Titre" name="Titre">
+                    <span class="user">Titre</span>
                 </div>
 
                 <div class="inputBox">
-                    <input type="text" id="description" name="description">
-                    <span class="user">Description</span>
+                    <input type="text" id="Contenu" name="Contenu">
+                    <span class="Contenu">Contenu</span>
                 </div>
 
                 <div class="inputBox">
-                    <input type="text" id="langage" name="langage">
-                    <span class="user">langage</span>
-                </div>
-
-                <div class="inputBox">
-                    <input type="text" id="collaborateur" name="collaborateur">
-                    <span class="user">Collaborateurs</span>
-                </div>
-                <div class="inputBox">
-                    <input type="date" id="date_start" name="date_start" value="2023-12-11">
-                    <span class="user">Date début</span>
-                </div>
-
-                <div class="inputBox">
-                <input type="date" id="date_end" name="date_end" value="2023-12-11">
-                    <span class="user">Date fin</span>
-                </div>
-
-                <div class="inputBox">
-                <input type="text" id="id_theme" name="id_theme">
+                    <input type="text" id="Id_Theme" name="Id_Theme">
                     <span class="user">Id theme</span>
                 </div>
                 <input type="submit" name="envoyer" class="enter">

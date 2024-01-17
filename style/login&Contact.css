@@ -1,5 +1,8 @@
 @import "root.css";
 
+
+
+
 body{
     height: 100vh;
     display: flex;
@@ -19,6 +22,14 @@ body{
     position: relative;
     top: -40%;
 }
+
+.return_Edit_admin{
+    width: 30px;
+    position: relative;
+    top: -40vh;
+}
+
+
 
 .login {
     color: var(--Txt-color);
@@ -41,6 +52,8 @@ body{
     background: var(--Fond);
     border-radius: 8px;
 }
+
+
 
 .inputBox {
     position: relative;

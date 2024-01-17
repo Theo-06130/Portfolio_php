@@ -1,0 +1,34 @@
+@import "root.css";
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--Fond);
+    color: var(--Txt-color);
+    display: flex;
+    overflow-x: hidden;
+}
+
+.input_div{
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 100vh;
+}
+
+select{
+    background-color: var(--Fond);
+    color: var(--Txt-color);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+
+
+
+@media screen and (max-width: 750px) {
+
+}
