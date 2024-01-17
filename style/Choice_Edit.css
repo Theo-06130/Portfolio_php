@@ -1,0 +1,16 @@
+@import url(root.css);
+body{
+    background-color: var(--Fond);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+a{
+    padding: 15px;
+    background-color: var(--main);
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}

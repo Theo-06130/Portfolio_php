@@ -3,8 +3,8 @@
 
 require_once '../Config/config.php';
 require_once '../class_php/Database.php';
-require_once '../class_php/Take_data_blog.php';
-require_once '../class_php/EditBlogProcess.php';
+require_once '../class_php/Take_data_skills.php';
+require_once '../class_php/EditSkillsProcess.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -25,13 +25,13 @@ try {
     exit();
 }
 
-$Take_Data_Blog = new Take_data_blog();
-$EditBlogProcess = new EditBlogProcess();
+$Take_Data_skills = new Take_data_skills();
+$EditSkillsProcess = new EditSkillsProcess();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $formData = $Take_Data_Blog->getFormDataBlog();
+    $formData = $Take_Data_skills->getFormDataSkills();
     try {
-        $EditBlogProcess->processFormDataBlog($formData);
+        $EditSkillsProcess->processFormDataSkills($formData);
     } catch (Exception $e) {
         // Gérer l'exception, par exemple, afficher un message d'erreur
         echo "Erreur : " . $e->getMessage();
@@ -55,11 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <div class="input_div">
-    <img class="return_Edit_admin" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
-    <form action="Edit_blog.php" method="post">
+    <img class="return_Edit_admin" src="../src/return.svg" alt="Retour page précédente"
+         onclick="location.href = 'Home.php';">
+    <form action="Edit_Skills.php" method="post">
         <div class="container_Edit_admin">
             <div class="card">
-                <label for="operation">Changement admin blog :</label>
+                <label for="operation">Changement admin skills :</label>
                 <select id="operation" name="operation" onchange="handleOperationChange()">
                     <option value="Default">Choisir une option</option>
                     <option value="Ajouter" id="add">Ajouter</option>
@@ -72,13 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span class="user">Choix ID</span>
                 </div>
                 <div class="inputBox">
-                    <input type="text" id="Titre" name="Titre">
-                    <span class="user">Titre</span>
+                    <input type="text" id="Nom" name="Nom">
+                    <span class="user">Nom</span>
                 </div>
 
                 <div class="inputBox">
-                    <input type="text" id="Contenu" name="Contenu">
-                    <span class="Contenu">Contenu</span>
+                    <input type="Date" id="Date_Learn" name="Date_Learn">
+                    <span class="Contenu">Date appris</span>
                 </div>
 
                 <div class="inputBox">
@@ -89,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <a href="logout.php">Se déconnecter</a>
 </div>
-
 
 
 </body>
