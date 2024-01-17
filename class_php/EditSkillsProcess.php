@@ -1,29 +1,29 @@
 <?php
 require_once 'Database.php';
+class EditSkillsProcess extends Database
 
-class EditBlogProcess extends Database
 {
     /**
      * @throws Exception
      */
-    public function processFormDataBlog($formData): void
+    public function processFormDataSkills($formData): void
     {
         $this->connect();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['operation'])) {
             switch ($_POST['operation']) {
                 case "Ajouter":
-                    $this->addBlog($formData);
+                    $this->addSkills($formData);
                     break;
                 case "Supprimer":
-                    $this->deleteBlog();
+                    $this->deleteSkills();
                     break;
                 case "Modifier":
                     // Traitement générique pour la modification
                     $this->updateOrEnvoyer($formData);
                     break;
                 case "Afficher":
-                    $this->Show_Blog();
+                    $this->Show_Skills();
                     break;
                 default:
                     echo "";
@@ -35,13 +35,13 @@ class EditBlogProcess extends Database
 
 
 
-    public function addBlog($formData): void
+    public function addSkills($formData): void
     {
         // Utilisez ces valeurs dans votre requête SQL
-        $req_add = $this->connection->prepare("INSERT INTO blog(Titre, Contenu, Date, Id_Theme) VALUES (?, ?, NOW(), ?)");
+        $req_add = $this->connection->prepare("INSERT INTO competences(Nom, Date_Learn, Id_Theme) VALUES (?, ?, ?)");
         $req_add->execute(array(
-            $formData['Titre'],
-            $formData['Contenu'],
+            $formData['Nom'],
+            $formData['Date_Learn'],
             !empty($formData['Id_Theme']) ? $formData['Id_Theme'] : null
         ));
     }
@@ -53,7 +53,7 @@ class EditBlogProcess extends Database
     {
         if (isset($_POST['envoyer'])) {
             // Logique pour le bouton "Modifier"
-            $this->updateBlog($formData);
+            $this->updateSkills($formData);
         } else {
             echo "ne fait rien c'est pour l'autre bouton afficher";
             // Logique pour le bouton "Envoyez"
@@ -62,12 +62,12 @@ class EditBlogProcess extends Database
     }
 
 
-    public function updateBlog($formData): void
+    public function updateSkills($formData): void
     {
         $choixId = $_POST['Choix_id'];
 
         // Vérifier si l'ID existe dans la base de données
-        $query = $this->connection->prepare("SELECT * FROM blog WHERE Id_Blog = ?");
+        $query = $this->connection->prepare("SELECT * FROM competences WHERE Id_Skills = ?");
         $query->execute([$choixId]);
 
         // Si l'ID existe, effectuer la mise à jour
@@ -89,7 +89,7 @@ class EditBlogProcess extends Database
             if (!empty($updateFields)) {
                 // Construire la requête SQL avec les parties SET dynamiquement générées
                 $updateFieldsString = implode(', ', $updateFields);
-                $req_update = $this->connection->prepare("UPDATE blog SET $updateFieldsString WHERE Id_Blog=?");
+                $req_update = $this->connection->prepare("UPDATE competences SET $updateFieldsString WHERE Id_Skills=?");
 
                 // Ajouter l'ID à la fin des valeurs
                 $updateValues[] = $choixId;
@@ -116,13 +116,13 @@ class EditBlogProcess extends Database
 
 
 
-    public function deleteBlog(): void
+    public function deleteSkills(): void
     {
         if (isset($_POST['Choix_id'])) {
             $choixId = $_POST['Choix_id'];
 
             // Effectuez une requête pour vérifier si l'ID existe dans la base de données
-            $query = "SELECT * FROM blog WHERE Id_Blog = :choixId";
+            $query = "SELECT * FROM competences WHERE Id_Skills = :choixId";
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':choixId', $choixId, PDO::PARAM_INT);
             $statement->execute();
@@ -143,7 +143,7 @@ class EditBlogProcess extends Database
     private function performDelete($choixId): void
     {
         // Logique de suppression ici (exécuter la requête DELETE)
-        $req_delete = $this->connection->prepare("DELETE FROM blog WHERE Id_Blog = ?");
+        $req_delete = $this->connection->prepare("DELETE FROM competences WHERE Id_Skills = ?");
         $req_delete->execute([$choixId]);
 
         echo "Projet supprimé avec succès.";
@@ -151,19 +151,17 @@ class EditBlogProcess extends Database
 
 
 
-    public function Show_Blog(): void
+    public function Show_Skills(): void
     {
-        $req_show = $this->connection->prepare("SELECT * FROM blog");
+        $req_show = $this->connection->prepare("SELECT * FROM competences");
         $req_show->setFetchMode(PDO::FETCH_ASSOC);
         $req_show->execute();
         $tab = $req_show->fetchAll();
 
         for ($i = 0; $i < count($tab); $i++) {
-            echo  htmlspecialchars($tab[$i]['Id_Blog'], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Titre"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Contenu"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Date"], ENT_QUOTES, 'UTF-8') . " ";
-
+            echo  htmlspecialchars($tab[$i]['Id_Skills'], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Nom"], ENT_QUOTES, 'UTF-8') . " "
+                . htmlspecialchars($tab[$i]["Date_Learn"], ENT_QUOTES, 'UTF-8') . " ";
             // Vérifiez si la clé "Id_theme" existe avant de l'afficher
             if (isset($tab[$i]["Id_Theme"])) {
                 echo htmlspecialchars($tab[$i]["Id_Theme"], ENT_QUOTES, 'UTF-8') . " ";

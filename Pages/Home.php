@@ -34,7 +34,7 @@ try {
         <h2>Portfolio Théo CERKOWNIK</h2>
     </div>
     <nav>
-        <img src="../assets/add.svg" alt="add_button" onclick="location.href = 'Edit_admin.php';">
+        <img src="../assets/add.svg" alt="add_button" onclick="location.href = 'Choice_Edit.php';">
         <a href="Home.php">Accueil</a>
         <a href="blog.php">Blog</a>
         <a href="Contact.php">Contact</a>

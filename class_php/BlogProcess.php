@@ -16,6 +16,4 @@ class BlogProcess
         $query->execute();
         return $query->fetchAll();
     }
-
-    // Vous pouvez ajouter d'autres méthodes pour ajouter, supprimer ou mettre à jour des blogs
 }
