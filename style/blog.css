@@ -51,7 +51,7 @@ h1{
 
 .Contenu{
     padding: 5px;
-    overflow-y: scroll;
+    overflow-wrap: break-word;
     height: 70%;
     width: 100%;
 }
