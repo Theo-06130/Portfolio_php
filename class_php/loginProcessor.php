@@ -22,7 +22,7 @@ class LoginProcessor
             $_SESSION['logged_in'] = true;
 
             // Authentification réussie, rediriger vers Edit_admin.php
-            header("Location: ../Pages/Edit_admin.php");
+            header("Location: ../Pages/Choice_Edit.php");
             exit();
         } else {
             // Authentification échouée, afficher un message d'erreur
