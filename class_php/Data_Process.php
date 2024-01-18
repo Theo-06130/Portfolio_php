@@ -62,6 +62,10 @@ class Data_Process extends Database
             $formData['date_end'],
             !empty($formData['id_theme']) ? $formData['id_theme'] : null // Assurez-vous que la valeur est valide ou NULL
         ));
+
+        // Redirection après l'ajout
+        header("Location: ".$_SERVER['PHP_SELF']);
+        exit();
     }
 
 

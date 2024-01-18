@@ -1,4 +1,7 @@
 <?php
+
+use JetBrains\PhpStorm\NoReturn;
+
 require_once 'Database.php';
 
 class EditBlogProcess extends Database
@@ -35,7 +38,7 @@ class EditBlogProcess extends Database
 
 
 
-    public function addBlog($formData): void
+    #[NoReturn] public function addBlog($formData): void
     {
         // Utilisez ces valeurs dans votre requête SQL
         $req_add = $this->connection->prepare("INSERT INTO blog(Titre, Contenu, Date, Id_Theme) VALUES (?, ?, NOW(), ?)");
@@ -44,7 +47,12 @@ class EditBlogProcess extends Database
             $formData['Contenu'],
             !empty($formData['Id_Theme']) ? $formData['Id_Theme'] : null
         ));
+
+        // Redirection après l'ajout
+        header("Location: ".$_SERVER['PHP_SELF']);
+        exit();
     }
+
 
 
 

@@ -1,6 +1,9 @@
 @import url(root.css);
 
-
+body{
+    background-color: var(--Fond);
+    color: var(--Txt-color);
+}
 
 
 @media screen and (max-width: 900px) {
@@ -21,6 +24,12 @@
         width: 100vw;
         align-items: center;
     }
+
+
+    .info{
+        display: none;
+    }
+
     .name>h2{
         display: block;
     }
@@ -52,6 +61,23 @@
     .name>h2{
         display: none;
     }
+
+    .icon_name:hover{
+        width: 350px;
+    }
+
+    .logo_info{
+        left: 10px;
+        position: relative;
+        width: 30px;
+    }
+
+    .info{
+        left: 5vw;
+        position: absolute;
+        color: var(--Fond);
+        width: 13vw;
+    }
 }
 
 a{
@@ -64,16 +90,13 @@ a{
 .icon_name{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     width: 50px;
+    height: 50px;
     background-color: var(--Txt-color);
     margin: 5px;
     border-radius: 100px;
-}
-.icon_name>p{
-    font-size:40px;
-    padding: 2px;
-    color: var(--Fond);
+
 }
 
 
@@ -112,5 +135,92 @@ nav>img{
 .project>p{
     color: var(--Fond);
 }
+
+
+
+
+
+
+
+
+
+
+
+.toggle-switch {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    --light: #d8dbe0;
+    --dark: #28292c;
+    --link: rgb(27, 129, 112);
+    --link-hover: rgb(24, 94, 82);
+}
+
+.switch-label {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    background-color: var(--light);
+    border-radius: 25px;
+    cursor: pointer;
+    border: 3px solid var(--dark);
+}
+
+.checkbox {
+    position: absolute;
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider {
+    background-color: var(--dark);
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--dark);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.checkbox:checked ~ .slider::before {
+    -webkit-box-shadow: inset 12px -4px 0px 0px var(--light);
+    box-shadow: inset 12px -4px 0px 0px var(--light);
+    -webkit-transform: translateX(35px);
+    -ms-transform: translateX(35px);
+    transform: translateX(35px);
+    background-color: var(--dark);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

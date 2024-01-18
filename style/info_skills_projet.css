@@ -1,0 +1,100 @@
+@import url(root.css);
+
+body{
+    display: flex;
+    background-color: var(--Fond);
+    color: var(--Txt-color);
+    width: 100vw;
+    overflow-x: hidden;
+
+}
+
+.projet_div{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.skills_div{
+    width:50vw;
+    display: flex;
+    justify-content: center;
+}
+
+
+.colonne_card{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card{
+    background-color: var(--main);
+    margin-top: 10%;
+    width: 80%;
+    height: 30vh;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+h3{
+    margin-top: 10%;
+}
+
+p{
+    margin-bottom: 10px;
+}
+
+
+strong{
+    color: var(--Fond);
+}
+.return_info{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+}
+
+
+@media screen and (max-width: 700px) {
+    body{
+        flex-direction: column;
+    }
+
+    .projet_div{
+        width: 100vw;
+    }
+
+    .skills_div{
+        width: 100vw;
+    }
+
+    .switch_info{
+        position: relative;
+        top: 5px;
+        left: 55vw;
+        border-radius: 5px;
+        width: 40vw;
+        padding: 5px;
+        color: var(--Txt-color);
+        background-color: var(--main);
+    }
+
+    .colonne_card{
+        width: 90vw;
+    }
+
+    .hidden{
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+    .switch_info{
+        display: none;
+    }
+}

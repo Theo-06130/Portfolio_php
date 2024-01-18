@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
+    <script src="../script/switch_mode.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/Edit_admin.css">
@@ -55,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <div class="input_div">
-    <img class="return_Edit_admin" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
+    <img class="return_Edit_admin" src="../assets/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
     <form action="Edit_blog.php" method="post">
         <div class="container_Edit_admin">
             <div class="card">
@@ -94,4 +95,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 <script src="../script/input_edit.js"></script>
+
 </html>

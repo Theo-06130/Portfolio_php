@@ -27,14 +27,16 @@ try {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script src="../script/switch_mode.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../style/login&Contact.css" rel="stylesheet" />
+
     <title>Contact</title>
 </head>
 <body>
 
-<img class="return_Contact" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
+<img class="return_Contact" src="../assets/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
 <form action="Contact.php" method="post">
     <div class="container">
         <div class="card">
@@ -75,4 +77,5 @@ try {
     </div>
 </form>
 </body>
+
 </html>

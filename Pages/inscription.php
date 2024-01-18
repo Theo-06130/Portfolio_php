@@ -7,6 +7,13 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
+// Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
+if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
 $database = new Database(); // Initialisez votre instance de Database
 
 try {
