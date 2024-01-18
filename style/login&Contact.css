@@ -8,7 +8,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e3e3e3;
+    background-color: var(--Fond_foncé);
 }
 
 .return{
@@ -32,13 +32,14 @@ body{
 
 
 .login {
-    color: var(--Txt-color);
+    color: var(--secondary);
     text-transform: uppercase;
     letter-spacing: 2px;
     display: block;
     font-weight: bold;
     font-size: x-large;
 }
+
 
 .card {
     display: flex;
@@ -51,6 +52,7 @@ body{
     gap: 35px;
     background: var(--Fond);
     border-radius: 8px;
+
 }
 
 
@@ -65,11 +67,11 @@ body{
     padding: 10px;
     outline: none;
     border: none;
-    color: var(--Txt-color);
+    color: var(--secondary);
     font-size: 1em;
     background: transparent;
-    border-left: 2px solid var(--Txt-color);
-    border-bottom: 2px solid var(--Txt-color);
+    border-left: 2px solid var(--secondary);
+    border-bottom: 2px solid var(--secondary);
     transition: 0.1s;
     border-bottom-left-radius: 8px;
 }
@@ -83,7 +85,7 @@ body{
     padding: 10px;
     pointer-events: none;
     font-size: 12px;
-    color: var(--Txt-color);
+    color: var(--secondary);
     text-transform: uppercase;
     transition: 0.5s;
     letter-spacing: 3px;
@@ -95,7 +97,7 @@ body{
     transform: translateX(113px) translateY(-15px);
     font-size: 0.8em;
     padding: 5px 10px;
-    background: var(--Txt-color);
+    background: var(--secondary);
     letter-spacing: 0.2em;
     color: var(--Fond);
     border: 2px;
@@ -103,7 +105,7 @@ body{
 
 .inputBox input:valid,
 .inputBox input:focus {
-    border: 2px solid var(--Txt-color);
+    border: 2px solid var(--secondary);
     border-radius: 8px;
 }
 
@@ -111,7 +113,7 @@ body{
     height: 45px;
     width: 100px;
     border-radius: 5px;
-    border: 2px solid var(--Txt-color);
+    border: 2px solid var(--secondary);
     cursor: pointer;
     background-color: transparent;
     transition: 0.5s;
@@ -122,7 +124,7 @@ body{
 }
 
 .enter:hover {
-    background-color: var(--Txt-color);
+    background-color: var(--secondary);
     color: var(--Fond);
 }
 

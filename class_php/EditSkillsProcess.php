@@ -1,4 +1,7 @@
 <?php
+
+use JetBrains\PhpStorm\NoReturn;
+
 require_once 'Database.php';
 class EditSkillsProcess extends Database
 
@@ -35,7 +38,7 @@ class EditSkillsProcess extends Database
 
 
 
-    public function addSkills($formData): void
+    #[NoReturn] public function addSkills($formData): void
     {
         // Utilisez ces valeurs dans votre requête SQL
         $req_add = $this->connection->prepare("INSERT INTO competences(Nom, Date_Learn, Id_Theme) VALUES (?, ?, ?)");
@@ -44,6 +47,10 @@ class EditSkillsProcess extends Database
             $formData['Date_Learn'],
             !empty($formData['Id_Theme']) ? $formData['Id_Theme'] : null
         ));
+
+        // Redirection après l'ajout
+        header("Location: ".$_SERVER['PHP_SELF']);
+        exit();
     }
 
 

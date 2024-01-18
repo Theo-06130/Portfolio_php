@@ -13,13 +13,14 @@ require_once '../class_php/Database.php';
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script src="../script/switch_mode.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../style/login&Contact.css" rel="stylesheet" />
     <title>Login</title>
 </head>
 <body>
-<img class="return" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
+<img class="return" src="../assets/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
     <div class="container">
         <div class="card">

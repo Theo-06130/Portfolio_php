@@ -1,8 +1,17 @@
 :root {
     --Fond: #EEEEEE;
+    --Fond_foncé: #dedede;
     --Txt-color: #00171F;
     --main:#00A7E1;
     --secondary: #003459;
+}
+
+.dark-mode {
+    --Fond: #00171F;
+    --Fond_foncé: #000e13;
+    --Txt-color: #EEEEEE;
+    --main: #3FA3C4;
+    --secondary: #93BEDF;
 }
 
 *{
@@ -11,6 +20,7 @@
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
     color: var(--Txt-color);
+    transition: 0.3s;
 }
 
 
@@ -36,6 +46,19 @@
 ::-webkit-scrollbar-thumb:hover {
     /* background-image: linear-gradient(to bottom, #4a4949, #383737, #272727, #171717, #000000); */
     /* color on hover */
+}
+
+
+/* couleur surlignage texte*/
+/* pour Firefox */
+::-moz-selection {
+    background-color:var(--Fond_foncé);
+    color: var(--main);
+}
+/* pour Safari et Chrome */
+::selection {
+    background-color:var(--Fond_foncé);
+    color: var(--main);
 }
 
 

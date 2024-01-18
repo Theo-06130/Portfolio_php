@@ -46,6 +46,11 @@ class ContactFormHandler extends Database
 
                 // Renouveler le jeton CSRF après chaque soumission réussie
                 $this->generateCsrfToken();
+
+                // Redirection après l'ajout
+                header("Location: ".$_SERVER['PHP_SELF']);
+                exit();
+
             } catch (Exception $e) {
                 // En cas d'erreur, afficher un message d'erreur
                 $confirmationMessage = "Erreur lors de l'enregistrement du message : " . $e->getMessage();
@@ -54,6 +59,7 @@ class ContactFormHandler extends Database
 
         return $confirmationMessage;
     }
+
 
 
 

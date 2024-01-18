@@ -25,6 +25,7 @@ $blogs = $blogProcess->getAllBlogs();
 <html lang="en">
 
 <head>
+    <script src="../script/switch_mode.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/blog.css">
@@ -32,7 +33,7 @@ $blogs = $blogProcess->getAllBlogs();
 </head>
 
 <body>
-<img class="return" src="../src/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
+<img class="return" src="../assets/return.svg" alt="Retour page précédente" onclick="location.href = 'Home.php';" >
 <h1>Liste des blogs</h1>
 <div class="blog_group">
     <?php
@@ -51,7 +52,7 @@ $blogs = $blogProcess->getAllBlogs();
         echo "</div>";
         echo "<hr>";
     }
-    ?></>
+    ?>
 
 </body>
 

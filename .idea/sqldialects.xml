@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/class_php/Database.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/class_php/EditBlogProcess.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/class_php/InscriptionHandler.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/class_php/info_skills_projet_Process.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/class_php/loginProcessor.php" dialect="GenericSQL" />
   </component>
 </project>
