@@ -3,6 +3,7 @@
 body{
     background-color: var(--Fond);
     color: var(--Txt-color);
+    overflow: hidden;
 }
 
 
@@ -208,8 +209,85 @@ nav>img{
 
 
 
+/*####################################################################*/
+
+main{
+    margin-top: 15px;
+    display: flex;
+    height: 90vh;
+    width: 100vw;
+}
 
 
+article{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 100%;
+}
+
+.info_perso{
+    padding: 8px;
+    border-radius: 5px;
+    width: 60%;
+    height: 80%;
+    box-shadow: 21px 20px 22px 0px var(--Fond_foncé);
+    transition: 0.3s;
+}
+
+.info_perso:hover,.info_pro:hover,.passion:hover{
+    box-shadow:none;
+    background-color: var(--Fond_foncé);
+}
+
+
+aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50vw;
+    height: 100%;
+    /*background-color: pink;*/
+}
+
+.info_pro{
+    padding: 8px;
+    border-radius: 5px;
+    width: 60%;
+    height: 40%;
+    box-shadow: 21px 20px 22px 0px var(--Fond_foncé);
+    transition: 0.3s;
+}
+
+.passion{
+    padding: 8px;
+    border-radius: 5px;
+    width: 60%;
+    height: 40%;
+    box-shadow: 21px 20px 22px 0px var(--Fond_foncé);
+    transition: 0.3s;
+}
+
+h2{
+    margin-bottom: 5px;
+}
+
+h4{
+    font-weight: lighter;
+    margin-bottom: 15px;
+}
+
+p{
+    text-align: justify;
+    line-height: 1.7rem;
+}
+
+strong{
+    font-weight: bolder;
+    color: var(--main);
+}
 
 
 

@@ -50,9 +50,25 @@ try {
     </nav>
 </header>
 <main>
-    <div class="info_perso"></div>
-    <div class="info_pro"></div>
-    <div class="passion"></div>
+    <article>
+        <div class="info_perso">
+            <h2>Théo Cerkownik</h2>
+            <h4>Étudiant informatique</h4>
+            <p>Née en février 2004, je suis actuellement en<strong> 2ᵉ années d'informatique</strong>, passionné de divers type de création, je suis <strong>développeur front-end</strong> dans la plupart des projets scolaire et extrascolaire. Bien que la création web m'intéresse énormément je suis <strong>curieux de découvrir</strong> d'autre domaine comme le <strong>réseau ou la cybersécurité</strong>, car ce sont des domaines qui sont à la fois remplis et complexes. </p>
+        </div>
+    </article>
+    <aside>
+        <div class="info_pro">
+            <h2>Informations professionnel : </h2>
+            <h4>En recherche de stage</h4>
+            <p>En cours d'apprentissage de langage front-end tel que <strong>React.js, SCSS</strong> et préparation d'une <strong>spécialisation en réseau/cybersécurité</strong> </p>
+        </div>
+        <div class="passion">
+            <h2>Mes passions :</h2>
+            <h4>Créateur et voyageur</h4>
+            J'ai de multiples passions en dehors de la création web comme la <strong>photographie, la vidéo, le sport et les jeux vidéo</strong>s. En plus de cela, <strong>j'aime voyager, créer des projets et la conduite en voiture /moto</strong>.
+        </div>
+    </aside>
 </main>
 </body>
 </html>
