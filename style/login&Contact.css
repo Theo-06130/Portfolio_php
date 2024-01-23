@@ -4,12 +4,21 @@
 
 
 body{
-    height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: var(--Fond_foncé);
 }
+
+@media screen and (min-width: 800px) {
+    body{
+        height: 100vh;
+        padding: 5vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+
 
 .return{
     width: 30px;

@@ -1,10 +1,10 @@
 <?php
-
+// Démarrer la session si elle n'est pas déjà démarrée
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once '../Config/config.php';
+require_once '../Config/config.php';            //récupération des fichiers pour la BDD et le fonctionnel
 require_once '../class_php/Database.php';
 require_once '../class_php/info_skills_projet_Process.php';
 
@@ -12,9 +12,9 @@ require_once '../class_php/info_skills_projet_Process.php';
 $database = new Database();
 
 try {
-    $database->connect();
+    $database->connect();           // Connexion BDD
 } catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+    echo "Erreur : " . $e->getMessage();    // gestion des erreurs de connexion
     exit();
 }
 $info_skills_projet = new info_skills_projet_Process($database);
@@ -28,7 +28,7 @@ $info_skills = $info_skills_projet->Show_Skills();
 ?>
 
 
-<html>
+<html lang="fr">
 <head>
     <script src="../script/switch_mode.js"></script>
     <meta charset="UTF-8">
@@ -44,51 +44,50 @@ $info_skills = $info_skills_projet->Show_Skills();
     <div class="projet_div" id="projet">
         <div class="colonne_card">
             <h3>Tous mes projets</h3>
-              <?php
-                foreach ($info_projet as $info) {
-                    echo "<div class='card'>";
-                    echo "<p class='Nom'>";
-                    // Afficher les détails du blog (assurez-vous d'échapper les données pour éviter les failles XSS)
-                    echo  "Titre du projet: "."<strong>". htmlspecialchars($info['Nom'])."</strong>" ."<br>";
-                    echo "</p>";
-                    echo "<p class='Description'>";
-                    echo "Description du projet: "."<strong>".htmlspecialchars($info['Description'])."</strong>" . "<br>";
-                    echo "</p>";
-                    echo "<p class='Langage'>";
-                    echo "Langage utilisé: "."<strong>".htmlspecialchars($info['Langage'])."</strong>" . "<br>";
-                    echo "</p>";
-                    echo "</p>";
-                    echo "<p class='Date_End'>";
-                    echo "Date de fin: "."<strong>".htmlspecialchars($info['Date_End'])."</strong>" . "<br>";
-                    echo "</p>";
-                    echo "</div>";
-                }
-                ?>
+            <?php                               //boucle affichage info projet
+            foreach ($info_projet as $info) {
+                echo "<div class='card'>";
+                echo "<p class='Nom'>";
+                echo "Titre du projet: " . "<strong>" . $info['Nom'] . "</strong>" . "<br>";
+                echo "</p>";
+                echo "<p class='Description'>";
+                echo "Description du projet: " . "<strong>" . $info['Description'] . "</strong>" . "<br>";
+                echo "</p>";
+                echo "<p class='Langage'>";
+                echo "Langage utilisé: " . "<strong>" . $info['Langage'] . "</strong>" . "<br>";
+                echo "</p>";
+                echo "<p class='Date_End'>";
+                echo "Date de fin: " . "<strong>" . $info['Date_End'] . "</strong>" . "<br>";
+                echo "</p>";
+                echo "</div>";
+            }
+            ?>
+
         </div>
         </div>
     <div class="skills_div hidden" id="skills">
         <div class="colonne_card">
             <h3>Toutes mes compétences</h3>
-            <?php
+            <?php                               //boucle affichage info compétences
             foreach ($info_skills as $info) {
                 echo "<div class='card'>";
                 echo "<p class='Nom'>";
-                // Afficher les détails du blog (assurez-vous d'échapper les données pour éviter les failles XSS)
-                echo "Nom de la compétence: "."<strong>".htmlspecialchars($info['Nom'])."</strong>" . "<br>";
+                echo "Nom de la compétence: " . "<strong>" . $info['Nom'] . "</strong>" . "<br>";
                 echo "</p>";
                 echo "<p class='Date_Learn'>";
-                echo "Date d'apprentissage: " ."<strong>".htmlspecialchars($info['Date_Learn'])."</strong>" . "<br>";
+                echo "Date d'apprentissage: " . "<strong>" . $info['Date_Learn'] . "</strong>" . "<br>";
                 echo "</p>";
                 echo "</div>";
             }
             ?>
+
         </div>
 
 
 
     </div>
 </body>
-<script>
+<script>        // script switch entre projet et skills pour responsive
     const skills = document.getElementById("skills");
     const projet = document.getElementById("projet");
     let modeProjet = false;

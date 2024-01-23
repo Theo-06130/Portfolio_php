@@ -8,7 +8,7 @@
 
 .dark-mode {
     --Fond: #00171F;
-    --Fond_foncé: #000e13;
+    --Fond_foncé: rgb(0, 14, 19);
     --Txt-color: #EEEEEE;
     --main: #3FA3C4;
     --secondary: #93BEDF;

@@ -1,23 +1,24 @@
 <?php
-session_start(); // Assurez-vous que la session est démarrée
-
-require_once '../Config/config.php';
+if (session_status() == PHP_SESSION_NONE) { // vérification si la session a démarré sinon démarrage
+    session_start();
+}
+require_once '../Config/config.php';        //récupération des fichiers pour la BDD et le fonctionnel
 require_once '../class_php/Database.php';
 require_once '../class_php/BlogProcess.php';
 
-$database = new Database();
+$database = new Database(); // création nouvel instance de la class database
 
 try {
-    $database->connect();
+    $database->connect();                   // Connexion BDD
 } catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+    echo "Erreur : " . $e->getMessage();            // gestion des erreurs de connexion
     exit();
 }
 
-$blogProcess = new BlogProcess($database);
+$blogProcess = new BlogProcess($database);      //Création nouvel instance de la classe BlogProcess
 
-// Afficher tous les blogs
-$blogs = $blogProcess->getAllBlogs();
+
+$blogs = $blogProcess->getAllBlogs();           // appel fonction d'affichage de tous les blogs dans la variable $blogs
 
 ?>
 
@@ -37,22 +38,23 @@ $blogs = $blogProcess->getAllBlogs();
 <h1>Liste des blogs</h1>
 <div class="blog_group">
     <?php
-    foreach ($blogs as $blog) {
+    foreach ($blogs as $blog) {         // boucle pour afficher tous les blogs
         echo "<div class='blog'>";
         echo "<p class='Titre'>";
-        // Afficher les détails du blog (assurez-vous d'échapper les données pour éviter les failles XSS)
-        echo htmlspecialchars($blog['Titre']) . "<br>";
+        echo $blog['Titre'] . "<br>";     // affichage des titres
         echo "</p>";
         echo "<p class='Contenu'>";
-        echo htmlspecialchars($blog['Contenu']) . "<br>";
+        echo $blog['Contenu'] . "<br>"; // affichage Contenu
         echo "</p>";
         echo "<p class='Date'>";
-        echo htmlspecialchars($blog['Date']) . "<br>";
+        echo $blog['Date'] . "<br>";  //affichage Date
         echo "</p>";
         echo "</div>";
         echo "<hr>";
     }
     ?>
+
+
 
 </body>
 

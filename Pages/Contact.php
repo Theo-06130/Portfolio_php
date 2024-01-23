@@ -1,26 +1,26 @@
 <?php
-// Contact.php
+// Démarrer la session si elle n'est pas déjà démarrée
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-require_once '../Config/config.php';
+require_once '../Config/config.php';                    //récupération des fichiers pour la BDD et le fonctionnel
 require_once '../class_php/Contact_traitement.php';
 require_once '../class_php/Database.php';
 
 $database = new Database();
 
 try {
-    $database->connect();
+    $database->connect();       // Connexion BDD
 
     $contactFormHandler = new ContactFormHandler($database);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $confirmationMessage = $contactFormHandler->saveFormToDatabase();
+        $confirmationMessage = $contactFormHandler->saveFormToDatabase();       //post du formulaire de contact
         echo $confirmationMessage;
     }
 
 } catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+    echo "Erreur : " . $e->getMessage();    // gestion des erreurs de connexion
 }
 ?>
 
@@ -31,6 +31,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../style/login&Contact.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../style/body_mobile_Contact_login.css">
 
     <title>Contact</title>
 </head>

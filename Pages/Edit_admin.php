@@ -1,41 +1,32 @@
 <?php
-
-
-require_once '../Config/config.php';
-require_once '../class_php/Database.php';
-require_once '../class_php/Take_data.php';
-require_once '../class_php/Data_Process.php';
+// Démarrer la session si elle n'est pas déjà démarrée
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+require_once '../Config/config.php';            //récupération des fichiers pour la BDD et le fonctionnel
+require_once '../class_php/Database.php';
+require_once '../class_php/Take_data.php';
+require_once '../class_php/Data_Process.php';
+require_once '../class_php/ConnectAndTestLog.php';
 
-// Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
-if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: login.php");
-    exit();
-}
 
-$database = new Database();
 
-try {
-    $database->connect();
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
-    exit();
-}
+
+
+
+ConnectAndTestLog();
 
 $Take_Data = new Take_data();
 $Data_Process = new Data_Process();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {         //post du formulaire des projets
     $formData = $Take_Data->getFormData();
     try {
-        $Data_Process->processFormData($formData);
+        $Data_Process->processFormData($formData);      //lance la fonction qui choisi quelle partie du crud faire
     } catch (Exception $e) {
-        // Gérer l'exception, par exemple, afficher un message d'erreur
-        echo "Erreur : " . $e->getMessage();
-        // Vous pouvez prendre d'autres mesures en cas d'erreur de traitement des données
+        echo "Erreur : " . $e->getMessage();        //gestion des erreurs
+
     }
 }
 ?>
@@ -92,12 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span class="user">Collaborateurs</span>
                 </div>
                 <div class="inputBox">
-                    <input type="date" id="date_start" name="date_start" value="2023-12-11">
+                    <input type="date" id="date_start" name="date_start" value="2024-01-01">
                     <span class="user">Date début</span>
                 </div>
 
                 <div class="inputBox">
-                <input type="date" id="date_end" name="date_end" value="2023-12-11">
+                <input type="date" id="date_end" name="date_end" value="2024-01-01">
                     <span class="user">Date fin</span>
                 </div>
 

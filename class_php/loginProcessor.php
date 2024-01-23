@@ -11,7 +11,7 @@ class LoginProcessor
 
     public function processLogin($username, $password, $csrfToken): void
     {
-        // Vérifier le jeton CSRF
+        // Vérifie le jeton CSRF
         if (!hash_equals($_SESSION['csrf_token'], $csrfToken)) {
             die("Erreur CSRF. Veuillez réessayer.");
         }
@@ -21,11 +21,11 @@ class LoginProcessor
             $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
 
-            // Authentification réussie, rediriger vers Edit_admin.php
+            // Authentification réussie redirige vers Edit_admin.php
             header("Location: ../Pages/Choice_Edit.php");
             exit();
         } else {
-            // Authentification échouée, afficher un message d'erreur
+            // Authentification échouée affichage d'un message d'erreur
             echo "Nom d'utilisateur ou mot de passe incorrect.";
         }
     }

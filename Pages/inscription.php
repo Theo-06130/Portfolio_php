@@ -1,39 +1,26 @@
 <?php
-require_once '../class_php/Database.php'; // Assurez-vous d'inclure la classe Database
-require_once '../class_php/InscriptionHandler.php'; // Assurez-vous d'inclure la classe InscriptionHandler
+require_once '../class_php/Database.php';               //récupération des fichiers pour la BDD et le fonctionnel
+require_once '../class_php/InscriptionHandler.php';
 require_once '../Config/config.php';
-
+// Démarrer la session si elle n'est pas déjà démarrée
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 
 // Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
-if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: login.php");
-    exit();
-}
-
-$database = new Database(); // Initialisez votre instance de Database
-
-try {
-    $database->connect(); // Établissez la connexion à la base de données
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
-    exit();
-}
+ConnectAndTestLog();
 
 $inscriptionHandler = new InscriptionHandler($database);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données du formulaire d'inscription
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {            //post formulaire d'inscription
     $username = $_POST['username'];
     $userProvidedPassword = $_POST['password'];
 
-    // Processus d'inscription
+                                                        //appel fonction inscription
     $inscriptionHandler->processInscription($username, $userProvidedPassword);
 
-    // Rediriger vers la page de connexion après l'inscription
+                                                        // Redirige vers page de connexion après inscription
     header("Location: login.php");
     exit();
 }

@@ -1,7 +1,6 @@
 @import "root.css";
 
 body{
-    height: 100vh;
     width: 100vw;
     background-color: var(--Fond);
     color: var(--Txt-color);
@@ -26,9 +25,13 @@ select{
 }
 
 
-
-
-
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
+    body{
+        height: 200vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+    }
 
 }

@@ -2,14 +2,14 @@
 
 use JetBrains\PhpStorm\NoReturn;
 
-require_once 'Database.php';
+require_once 'Database.php'; // récupération info connexion bdd
 class EditSkillsProcess extends Database
 
 {
     /**
      * @throws Exception
      */
-    public function processFormDataSkills($formData): void
+    public function processFormDataSkills($formData): void              //fonction qui lance la bonne fonction en fonction du mode choisi
     {
         $this->connect();
 
@@ -22,7 +22,7 @@ class EditSkillsProcess extends Database
                     $this->deleteSkills();
                     break;
                 case "Modifier":
-                    // Traitement générique pour la modification
+                                                // Choix du mode de modif (bêta)
                     $this->updateOrEnvoyer($formData);
                     break;
                 case "Afficher":
@@ -56,12 +56,13 @@ class EditSkillsProcess extends Database
 
 
 
-    private function updateOrEnvoyer($formData): void
+    private function updateOrEnvoyer($formData): void          // fonction modif ou affichage dans input (bêta)
+
     {
-        if (isset($_POST['envoyer'])) {
-            // Logique pour le bouton "Modifier"
+        if (isset($_POST['envoyer'])) {                 //si bouton envoyer alors lancement fonction modif
+
             $this->updateSkills($formData);
-        } else {
+        } else {                                            // début possibilité affichage dans input ( en cours)
             echo "ne fait rien c'est pour l'autre bouton afficher";
             // Logique pour le bouton "Envoyez"
             // ...
@@ -73,35 +74,35 @@ class EditSkillsProcess extends Database
     {
         $choixId = $_POST['Choix_id'];
 
-        // Vérifier si l'ID existe dans la base de données
+
         $query = $this->connection->prepare("SELECT * FROM competences WHERE Id_Skills = ?");
         $query->execute([$choixId]);
 
-        // Si l'ID existe, effectuer la mise à jour
+                                    // Si l'ID OK
         if ($query->rowCount() > 0) {
             $updateFields = [];
             $updateValues = [];
 
-            // Construire dynamiquement les parties SET de la requête SQL
+                                    // Construit dynamiquement les parties SET de la requête SQL
             foreach ($formData as $key => $value) {
                 if (!empty($value) || $value === '0') {
-                    // Ajouter le champ à la liste des champs à mettre à jour
+                                    // Ajoute le champ à la liste des champs à mettre à jour
                     $updateFields[] = "$key=?";
-                    // Ajouter la valeur à la liste des valeurs à mettre à jour
+                                    // Ajoute la valeur à la liste des valeurs à mettre à jour
                     $updateValues[] = $value;
                 }
             }
 
-            // Vérifier s'il y a des champs à mettre à jour
+                                    // Vérification s'il y a des champs à mettre à jour
             if (!empty($updateFields)) {
-                // Construire la requête SQL avec les parties SET dynamiquement générées
+                                     // Construit la requête SQL avec les parties SET dynamiquement générées
                 $updateFieldsString = implode(', ', $updateFields);
                 $req_update = $this->connection->prepare("UPDATE competences SET $updateFieldsString WHERE Id_Skills=?");
 
-                // Ajouter l'ID à la fin des valeurs
+                                    // Ajoute l'ID à la fin des valeurs
                 $updateValues[] = $choixId;
 
-                // Afficher les valeurs mises à jour et la requête SQL complète
+                                    // Affiche les valeurs mises à jour et la requête SQL complète
                 echo "Valeurs mises à jour : " . implode(', ', $updateValues) . "<br />";
 
                 if ($req_update->execute($updateValues)) {
@@ -128,18 +129,17 @@ class EditSkillsProcess extends Database
         if (isset($_POST['Choix_id'])) {
             $choixId = $_POST['Choix_id'];
 
-            // Effectuez une requête pour vérifier si l'ID existe dans la base de données
             $query = "SELECT * FROM competences WHERE Id_Skills = :choixId";
             $statement = $this->connection->prepare($query);
             $statement->bindParam(':choixId', $choixId, PDO::PARAM_INT);
             $statement->execute();
 
-            // Vérifiez si des résultats ont été obtenus
+
             if ($statement->rowCount() > 0) {
-                // L'ID existe, vous pouvez maintenant exécuter la logique de suppression
+                                             // L'ID OK exécution de la logique de suppression
                 $this->performDelete($choixId);
             } else {
-                // L'ID n'existe pas dans la base de données
+                                                // L'ID pas OK erreur
                 echo "La suppression a échoué, L'ID n'éxiste pas";
             }
         } else {
@@ -149,7 +149,7 @@ class EditSkillsProcess extends Database
 
     private function performDelete($choixId): void
     {
-        // Logique de suppression ici (exécuter la requête DELETE)
+
         $req_delete = $this->connection->prepare("DELETE FROM competences WHERE Id_Skills = ?");
         $req_delete->execute([$choixId]);
 
@@ -166,16 +166,18 @@ class EditSkillsProcess extends Database
         $tab = $req_show->fetchAll();
 
         for ($i = 0; $i < count($tab); $i++) {
-            echo  htmlspecialchars($tab[$i]['Id_Skills'], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Nom"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Date_Learn"], ENT_QUOTES, 'UTF-8') . " ";
-            // Vérifiez si la clé "Id_theme" existe avant de l'afficher
+            echo $tab[$i]['Id_Skills'] . " "
+                . $tab[$i]["Nom"] . " "
+                . $tab[$i]["Date_Learn"] . " ";
+
+                                    // Vérifiez si la clé "Id_theme" existe avant de l'afficher
             if (isset($tab[$i]["Id_Theme"])) {
-                echo htmlspecialchars($tab[$i]["Id_Theme"], ENT_QUOTES, 'UTF-8') . " ";
+                echo $tab[$i]["Id_Theme"] . " ";
             }
 
             echo "<br />";
         }
+
     }
 
 

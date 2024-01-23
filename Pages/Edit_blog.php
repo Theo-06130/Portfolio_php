@@ -1,29 +1,18 @@
 <?php
-
-
-require_once '../Config/config.php';
-require_once '../class_php/Database.php';
-require_once '../class_php/Take_data_blog.php';
-require_once '../class_php/EditBlogProcess.php';
+// Démarrer la session si elle n'est pas déjà démarrée
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+require_once '../Config/config.php';                //récupération des fichiers pour la BDD et le fonctionnel
+require_once '../class_php/Database.php';
+require_once '../class_php/Take_data_blog.php';
+require_once '../class_php/EditBlogProcess.php';
+require_once '../class_php/ConnectAndTestLog.php';
+
 
 
 // Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
-if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: login.php");
-    exit();
-}
-
-$database = new Database();
-
-try {
-    $database->connect();
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
-    exit();
-}
+ConnectAndTestLog();
 
 $Take_Data_Blog = new Take_data_blog();
 $EditBlogProcess = new EditBlogProcess();
@@ -31,7 +20,7 @@ $EditBlogProcess = new EditBlogProcess();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $formData = $Take_Data_Blog->getFormDataBlog();
     try {
-        $EditBlogProcess->processFormDataBlog($formData);
+        $EditBlogProcess->processFormDataBlog($formData);       //lance la fonction qui choisi quelle partie du crud faire
     } catch (Exception $e) {
         // Gérer l'exception, par exemple, afficher un message d'erreur
         echo "Erreur : " . $e->getMessage();

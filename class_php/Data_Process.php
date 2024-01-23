@@ -1,5 +1,8 @@
 <?php
-require_once 'Database.php';
+
+use JetBrains\PhpStorm\NoReturn;
+
+require_once 'Database.php'; // récupération info connexion bdd
 
 class Data_Process extends Database
 {
@@ -8,7 +11,7 @@ class Data_Process extends Database
     /**
      * @throws Exception
      */
-    public function processFormData($formData): void
+    public function processFormData($formData): void      //fonction qui lance la bonne fonction en fonction du mode choisi
     {
         $this->connect();
 
@@ -21,7 +24,7 @@ class Data_Process extends Database
                     $this->deleteProject();
                     break;
                 case "Modifier":
-                    // Traitement générique pour la modification
+                                                // Choix du mode de modif (bêta)
                     $this->updateOrEnvoyer($formData);
                     break;
                 case "Afficher":
@@ -34,13 +37,11 @@ class Data_Process extends Database
         }
     }
 
-    private function updateOrEnvoyer($formData): void
+    private function updateOrEnvoyer($formData): void            // fonction modif ou affichage dans input (bêta)
     {
-        if (isset($_POST['envoyer'])) {
-
-            // Logique pour le bouton "Modifier"
+        if (isset($_POST['envoyer'])) {                         //si bouton envoyer alors lancement fonction modif
             $this->updateProject($formData);
-        } else {
+        } else {                                                    // début possibilité affichage dans input ( en cours)
             echo "ne fait rien c'est pour l'autre bouton afficher";
             // Logique pour le bouton "Envoyez"
             // ...
@@ -49,7 +50,7 @@ class Data_Process extends Database
 
 
 
-    public function addProject($formData): void
+    #[NoReturn] public function addProject($formData): void
     {
         // Utilisez ces valeurs dans votre requête SQL
         $req_add = $this->connection->prepare("INSERT INTO projet(Nom, Description, Langage, Collaborateur, Date_start, Date_End, Id_Theme) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -135,7 +136,7 @@ class Data_Process extends Database
 
     private function performDelete($choixId): void
     {
-        // Logique de suppression ici (exécuter la requête DELETE)
+
         $req_delete = $this->connection->prepare("DELETE FROM projet WHERE Id_Projet = ?");
         $req_delete->execute([$choixId]);
 
@@ -152,15 +153,16 @@ class Data_Process extends Database
         $tab = $req_show->fetchAll();
 
         for ($i = 0; $i < count($tab); $i++) {
-            echo  htmlspecialchars($tab[$i]['Id_Projet'], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Nom"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Description"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Langage"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Collaborateur"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Date_Start"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Date_End"], ENT_QUOTES, 'UTF-8') . " "
-                . htmlspecialchars($tab[$i]["Id_theme"], ENT_QUOTES, 'UTF-8') . "<br />";
+            echo $tab[$i]['Id_Projet'] . " "
+                . $tab[$i]["Nom"] . " "
+                . $tab[$i]["Description"] . " "
+                . $tab[$i]["Langage"] . " "
+                . $tab[$i]["Collaborateur"] . " "
+                . $tab[$i]["Date_Start"] . " "
+                . $tab[$i]["Date_End"] . " "
+                . $tab[$i]["Id_theme"] . "<br />";
         }
+
     }
 
 

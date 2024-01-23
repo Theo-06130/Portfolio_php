@@ -1,8 +1,9 @@
 <?php
+// Démarrer la session si elle n'est pas déjà démarrée
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-require_once '../class_php/loginProcessor.php';
+require_once '../class_php/loginProcessor.php';             //récupération des fichiers pour la BDD et le fonctionnel
 require_once '../Config/config.php';
 require_once '../class_php/Database.php';
 
@@ -17,6 +18,7 @@ require_once '../class_php/Database.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../style/login&Contact.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../style/body_mobile_Contact_login.css">
     <title>Login</title>
 </head>
 <body>
@@ -41,10 +43,10 @@ require_once '../class_php/Database.php';
     </div>
 </form>
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $database = new Database(); // Instanciez votre classe Database ici
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {        //post login
+    $database = new Database();
     $loginProcessor = new LoginProcessor($database);
-    $loginProcessor->processLogin($_POST['username'], $_POST['password'], $_POST['csrf_token']);
+    $loginProcessor->processLogin($_POST['username'], $_POST['password'], $_POST['csrf_token']);        //lancement du process login avec jeton CSRF
 }
 ?>
 </body>

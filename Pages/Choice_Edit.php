@@ -1,11 +1,11 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) { // vérification si la session a démarré sinon démarrage
     session_start();
 }
 
 
-if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: login.php");
+if (!isset($_SESSION['username']) || !isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {   // vérification si la personne
+    header("Location: login.php");                                                            // est pas log on redirige vers login.php
     exit();
 }
 ?>

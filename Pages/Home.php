@@ -1,14 +1,14 @@
 <?php
-require_once '../Config/config.php';
+require_once '../Config/config.php';        //récupération des fichiers pour la BDD
 require_once '../class_php/Database.php';
 
 $database = new Database();
 try {
-    $database->connect();
+    $database->connect();           // Connexion BDD
 
     // Reste du code
 } catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+    echo "Erreur : " . $e->getMessage();    // gestion des erreurs de connexion
 }
 ?>
 <!doctype html>
