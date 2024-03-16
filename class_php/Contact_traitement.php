@@ -23,7 +23,7 @@ class ContactFormHandler extends Database
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                             // Vérifie le jeton CSRF
             if (!$this->isValidCsrfToken()) {
-                // Jeton CSRF invalide, lancer une exception
+                // Jeton CSRF invalide lance une erreur
                 throw new RuntimeException("Erreur de sécurité. Veuillez réessayer.");
             }
 
